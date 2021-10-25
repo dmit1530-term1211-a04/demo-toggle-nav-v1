@@ -1,0 +1,144 @@
+body {
+    background-color: #192f5e;
+    font-family: sans-serif;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/** header & nav **/
+/* STEP 1: style the default/showing state. Starting with the mobile view, style the layout and the links for they will look when visible */
+
+header {
+    background-color: #1e1e1e;
+    padding: 2% 2% 0;
+}
+
+header a {
+    color: gainsboro;
+    text-decoration: none;
+    /** allows the clickable to expand and take up the full width and height of the li**/
+    display: block;
+}
+
+header a:hover{
+    color: greenyellow;
+}
+
+/** toggle btn **/
+.toggle-btn{
+    border: none;
+    outline: none; /** removes the outline around the toggle on focus**/
+    background-color: transparent;
+}
+svg,
+svg rect {
+    fill: gainsboro;  
+}
+
+.toggle-btn:hover {
+    cursor: pointer;
+    fill: greenyellow;
+}
+
+svg:hover,
+svg rect:hover {
+    fill: greenyellow;
+}
+
+/** menu **/
+
+.menu li {
+    /** create extra space from additional line-height, making this a larger clickable area */
+    line-height: 2.5rem; /*40px*/
+    text-align: center;
+}
+
+.menu a {
+    padding: 0.5rem;
+    border-bottom: 1px solid transparent;
+}
+
+.menu a:last-child{
+    padding-bottom: 0;
+}
+
+.menu a:hover,
+.menu a:active {
+    color: lightblue;
+    border-bottom: 1px solid greenyellow;
+    background-color: #333;
+    border-radius: 5px;
+}
+
+/** STEP 2: Hide the menu **/
+/** once the menu is hidden, that becomes the default state/load stage. Note, If use choose to use display: none and block, you cannot use a transition propety */
+
+header nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+/** STEP 3: Bring back the menu using a class we create through JavaScript. **/
+.show-nav {
+    max-height: 15.5rem;
+}
+
+/** section **/
+section {
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p {
+    color: yellowgreen;
+    border-bottom: 2px solid greenyellow;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 1.75rem;
+}
+
+section h2 {
+    color: gainsboro;
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+}
+
+
+/** STEP 4: add a media query/condition and show the nav by default. Which means we want to show a horizontal navigation and hide the toggle btn **/
+
+/** can use relative elements in media queries **/
+@media screen and (min-width: 640px) {
+    .toggle-btn { 
+        display: none;
+    }
+
+    /** we want to see the nav by default, so we give the height back **/
+    header nav {
+        max-height: 15.5rem;
+        overflow: visible;
+    }
+
+    header,
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    header {
+        padding: 2%;
+    }
+
+    .menu li {
+        margin-left: 0.5rem;
+    }
+    .menu li a {
+        padding: 0 0.5rem;
+    }
+}
